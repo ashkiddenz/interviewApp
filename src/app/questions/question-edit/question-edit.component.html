@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" [formGroup]="questionForm">
+        <div class="form-group">
+          <label for="question">Question</label>
+
+          <input
+            type="text"
+            id="question"
+            class="form-control"
+            formControlName="question"
+          />
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="option1">Option 1</label>
+          <input
+            type="text"
+            id="option1"
+            class="form-control"
+            formControlName="option1"
+          />
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="option2">Option 2</label>
+          <input
+            type="text"
+            id="option2"
+            class="form-control"
+            formControlName="option2"
+          />
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="option3">Option 3</label>
+          <input
+            type="text"
+            id="option3"
+            class="form-control"
+            formControlName="option3"
+          />
+        </div>
+
+
+        <div class="form-group">
+          <label for="option4">Option 4</label>
+          <input
+            type="text"
+            id="option4"
+            class="form-control"
+            formControlName="option4"
+          />
+        </div>
+
+
+        <div class="form-group">
+          <label for="answer">Answer</label>
+          <input
+            type="text"
+            id="answer"
+            class="form-control"
+            formControlName="answer"
+          />
+        </div>
+
+
+      <!--Buttons -->
+
+         <div class="form-group">
+          <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!questionForm.valid"
+        >
+          Submit
+        </button>
+        <button type="button" class="btn btn-danger ml-3" (click)="onCancel()">
+          Cancel
+        </button>
+         </div>
+
+      <!--Buttons -->
+    </form>
+  </div>
+
+</div>
+
+
