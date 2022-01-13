@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'questions', component: QuestionsComponent, canActivate: [IsAuthenticatedGuard], children: [
       { path: '', component: QuestionListComponent },
       { path: 'new', component: QuestionEditComponent },
-      { path: ':id', component: QuestionDetailComponent },
+      // { path: ':id', component: QuestionDetailComponent },
       { path: ':id/edit', component: QuestionEditComponent },
       { path: '**', redirectTo: '/questions', pathMatch: 'full' },
     ]

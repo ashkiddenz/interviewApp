@@ -17,6 +17,7 @@ export class QuestionListComponent implements OnInit,OnDestroy {
 
 
   constructor(private router: Router, private route: ActivatedRoute, private questionService: QuestionService) {
+
    }
 
 

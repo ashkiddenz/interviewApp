@@ -23,6 +23,8 @@ import { QuestionDetailComponent } from './questions/question-detail/question-de
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionItemComponent } from './components/question-item/question-item.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackbarItemComponent } from './components/snackbar-item/snackbar-item.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
     QuestionDetailComponent,
     QuestionListComponent,
     QuestionItemComponent,
+    SnackbarItemComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -47,11 +51,12 @@ import {MatIconModule} from '@angular/material/icon';
     HttpClientModule,
     MatExpansionModule,
     MatIconModule,
+    MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,]
 
 })
 export class AppModule {
