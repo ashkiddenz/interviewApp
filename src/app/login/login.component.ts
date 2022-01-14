@@ -29,10 +29,11 @@ export class LoginComponent {
     const email = this.form.get('email')?.value;
     const password = this.form.get('password')?.value;
 
+
     if(this.authService.authenticate(email,password)){
       this.router.navigate(['questions']);
     } else {
-      console.log(this.authService.isLoggedIn);
+      console.log('Authentication Failed',this.authService.isLoggedIn);
       this.failedAuthentication = true;
     }
 

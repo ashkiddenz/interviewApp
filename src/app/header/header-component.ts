@@ -42,7 +42,7 @@ checkIsLoggedIn () {
   }
 
   logout(){
-    localStorage.removeItem('isLoggedIn');
+    localStorage.setItem('isLoggedIn',JSON.stringify(false));
     this.authService.isLoggedIn=false;
     this.router.navigate(['login']);
   }

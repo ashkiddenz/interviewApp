@@ -20,15 +20,17 @@ export class QuestionListComponent implements OnInit,OnDestroy {
 
    }
 
-
   ngOnInit() {
     this.questionSub = this.questionService.questionsChanged.subscribe(
       questions => {
+        console.log('Questions Changed')
         if (questions) {
           this.questions = questions;
         }
       })
-    this.questions = this.questionService.getQuestions();
+    // this.questions = this.questionService.getQuestions();   without resolver
+
+    this.questions = this.route.snapshot.data['questions'];
   }
 
   addMcq() {

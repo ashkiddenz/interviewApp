@@ -10,6 +10,9 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatExpansionModule } from '@angular/material/expansion'
+import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackbarItemComponent } from './components/snackbar-item/snackbar-item.component';
 
 /* Firebase Imports*/
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
@@ -22,9 +25,6 @@ import { QuestionEditComponent } from './questions/question-edit/question-edit.c
 import { QuestionDetailComponent } from './questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionItemComponent } from './components/question-item/question-item.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { SnackbarItemComponent } from './components/snackbar-item/snackbar-item.component';
 
 
 @NgModule({

@@ -14,6 +14,7 @@ export class AuthService {
 
   constructor() {}
 
+//Before creating another fake user in local storage
   checkUser():boolean{
     if(this.getUser()){
       return true
@@ -31,18 +32,19 @@ export class AuthService {
     return null;
   }
 
-  isAuthenticated() {
+  isAuthenticated():boolean {
     const dbState = localStorage.getItem('isLoggedIn');
     if(dbState){
       this.isLoggedIn=JSON.parse(dbState);
-      return true;
+      return this.isLoggedIn?true:false;
     }
-    this.isLoggedIn=false;
     return false;
   }
 
    authenticate(email?:string,password?:string):boolean{
+
     const dbAdmin:Admin= this.getUser();
+
     console.log(dbAdmin.email,dbAdmin.password)
     console.log(email,password)
 
@@ -57,20 +59,4 @@ export class AuthService {
     }
   }
 
-  // login(username: string, password: string) {
-  //   return this.apiService.login(username, password).pipe(
-  //     tap((response: any) => {
-  //       this._isLoggedIn$.next(true);
-  //       localStorage.setItem(this.TOKEN_NAME, response.token);
-  //       this.user = this.getUser(response.token);
-  //     })
-  //   );
-  // }
-
-  // private getUser(token: string): UserModel | null {
-  //   if (!token) {
-  //     return null
-  //   }
-  //   return JSON.parse(atob(token.split('.')[1])) as UserModel;
-  // }
 }
