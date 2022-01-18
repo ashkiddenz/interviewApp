@@ -1,9 +1,9 @@
 <div class="row" >
-  <div class="col-md-12" #appItem>
+  <div class="col-md-12 mt-2" #appItem>
     <button class="btn btn-success" (click)="addMcq()">Add MCQ</button>
   </div>
   <div class="col-md-12 mt-2  border">
-    <mat-accordion multi="true">
+    <mat-accordion >
       <app-question-item
       *ngFor="let questionEl of questions; let i = index"
       [question]="questionEl"
