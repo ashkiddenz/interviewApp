@@ -1,3 +1,5 @@
+import { IsAdminGuard } from './guards/is-admin.guard';
+import { StudentsComponent } from './students/students.component';
 import { QuestionsResolver } from './resolvers/questions.resolver';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
@@ -10,9 +12,13 @@ import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent , canActivate:[LoggedInGuard] },
+  { path: 'login', component: LoginComponent ,
+  canActivate:[LoggedInGuard]
+},
   {
-    path: 'questions', component: QuestionsComponent, canActivate: [IsAuthenticatedGuard], children: [
+    path: 'questions', component: QuestionsComponent,
+    canActivate: [IsAuthenticatedGuard,IsAdminGuard],
+    children: [
       { path: '', component: QuestionListComponent , resolve:{questions:QuestionsResolver} },
       { path: 'new', component: QuestionEditComponent },
       { path: ':id/edit', component: QuestionEditComponent },
@@ -20,7 +26,7 @@ const routes: Routes = [
     ]
   },
   {path:'',redirectTo:'/questions',pathMatch:'full'},
-  { path: '**', redirectTo:'/questions',pathMatch:'full' }
+  // { path: '**', redirectTo:'/questions',pathMatch:'full' }
 ];
 
 @NgModule({

@@ -9,7 +9,8 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  user = new Admin('', '');
+  user:Admin=new Admin('','')
+  users:Admin[] = [] ;
   isLoggedIn:boolean=false;
 
   constructor() {}
@@ -22,11 +23,15 @@ export class AuthService {
     return false;
   }
 
-  getUser() {
-    const localDb = localStorage.getItem('users');
+  getUser(email?:string) {
+    const localDb = localStorage.getItem('uzers');
     if (localDb) {
-      const user = JSON.parse(localDb);
-      return this.user = user;
+      this.users = JSON.parse(localDb);
+      const user = this.users.find(value=>value.email===email);
+      if(user){
+        this.user= user;
+      }
+      return user;
     }
     console.log('No user exists in database')
     return null;
@@ -41,22 +46,47 @@ export class AuthService {
     return false;
   }
 
+
+  isAdmin(){
+     const userString = localStorage.getItem('currentUser');
+     if(userString){
+      console.log('in the loop')
+      console.log('userString=',userString);
+      const role = userString;
+      if(role.includes('Admin')){
+        console.log('Returning a boolean after login - true')
+       return true;
+      } else {
+        console.log('Returning a boolean after login - false')
+        return false;
+      }
+
+     }
+      console.log("Returning boolean before login")
+      console.log(this.user.isAdmin);
+      return this.user.isAdmin ;
+  }
+
+
    authenticate(email?:string,password?:string):boolean{
-
-    const dbAdmin:Admin= this.getUser();
-
-    console.log(dbAdmin.email,dbAdmin.password)
-    console.log(email,password)
-
-    if(email===dbAdmin.email && password===dbAdmin.password ){
+     if(email){
+      this.getUser(email);
+     }
+    if(email===this.user.email && password===this.user.password ){
       console.log('Email and Password Matched')
+      const currentUser = this.isAdmin() ? 'Admin':'Student';
+      console.log("Current User",currentUser);
       this.isLoggedIn = true;
       localStorage.setItem('isLoggedIn',JSON.stringify(this.isLoggedIn));
+      localStorage.setItem('currentUser',JSON.stringify(currentUser));
       return true;
     } else {
       console.log('Email or Password is Incorrect');
       return false;
     }
+
   }
+
+
 
 }

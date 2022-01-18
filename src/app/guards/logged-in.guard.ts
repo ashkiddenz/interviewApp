@@ -13,10 +13,9 @@ export class LoggedInGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):boolean {
       if(this.authService.isAuthenticated()){
-        this.router.navigate(['questions']);
         return false;
       }
-      console.log('User Logged Out');
+      console.log('User Not Logged In or Logged Out');
        return true;
     }
 

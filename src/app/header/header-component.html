@@ -4,11 +4,13 @@
     </div>
     <div class="navbar-nav">
       <div class="btn-toolbar pull-right">
-        <button *ngIf="!adminExists" class="btn btn-primary margin-right" (click)="create()">
-          SignUp
+           <!-- *ngIf="!adminExists"  -->
+        <button
+        class="btn btn-primary margin-right" [hidden]="checkIsLoggedIn()" routerLinkActive="active-link" routerLink="/register">
+          Register
         </button>
-        <button class="btn btn-primary " [hidden]="checkIsLoggedIn()" routerLink="/login">Log in</button>
-        <button class="btn btn-primary" (click)=logout() [hidden]="!checkIsLoggedIn()" ><span class="p-3">Logout</span><mat-icon class="align-bottom" >logout</mat-icon></button>
+        <button class="btn btn-primary " [hidden]="checkIsLoggedIn()" routerLinkActive="active-link" routerLink="/login">Log in</button>
+        <button class="btn btn-primary" (click)=logout() [hidden]="!checkIsLoggedIn()" routerLinkActive="active-link" ><span class="p-3">Logout</span><mat-icon class="align-bottom" >logout</mat-icon></button>
       </div>
     </div>
 

@@ -1,13 +1,15 @@
-<div class="row">
-  <div class="col-md-12">
+<div class="row" >
+  <div class="col-md-12" #appItem>
     <button class="btn btn-success" (click)="addMcq()">Add MCQ</button>
   </div>
-  <div class="col-md-12 mt-2">
-    <app-question-item
+  <div class="col-md-12 mt-2  border">
+    <mat-accordion multi="true">
+      <app-question-item
       *ngFor="let questionEl of questions; let i = index"
       [question]="questionEl"
       [index]="i"
     ></app-question-item>
+    </mat-accordion>
   </div>
 
 </div>

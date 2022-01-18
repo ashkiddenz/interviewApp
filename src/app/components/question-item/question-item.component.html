@@ -1,12 +1,12 @@
 <div class="row p-0">
-  <div class="col-md-10">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
+  <div class="col-md-10 col-sm-10 col-xs-8 ">
+      <mat-expansion-panel hideToggle >
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{ index + 1 }} . {{ question.question }} ?
           </mat-panel-title>
         </mat-expansion-panel-header>
+
         <ul class="list-group">
           <li class="list-group-item">
             <span class="font-weight-bold">A</span> - {{ question.option1 }}
@@ -25,10 +25,9 @@
           </li>
         </ul>
       </mat-expansion-panel>
-    </mat-accordion>
   </div>
-  <div class="col-md-2 mt-2 p-0">
-    <button mat-icon-button color="basic" (click)="onEditQuestion()"><mat-icon>edit</mat-icon></button>
-    <button mat-icon-button color="warn" (click)="onDeleteQuestion()"><mat-icon>delete</mat-icon></button>
-  </div>
+     <div class="col-md-2 col-sm-2 mt-2 col-xs-4 p-0">
+      <button mat-icon-button color="basic" (click)="onEditQuestion()"><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button color="warn" (click)="onDeleteQuestion()"><mat-icon>delete</mat-icon></button>
+    </div>
 </div>

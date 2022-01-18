@@ -13,6 +13,8 @@ import {MatExpansionModule } from '@angular/material/expansion'
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SnackbarItemComponent } from './components/snackbar-item/snackbar-item.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { StudentModule } from './students/student.module';
 
 /* Firebase Imports*/
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
@@ -25,6 +27,7 @@ import { QuestionEditComponent } from './questions/question-edit/question-edit.c
 import { QuestionDetailComponent } from './questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionItemComponent } from './components/question-item/question-item.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -40,6 +43,7 @@ import { QuestionItemComponent } from './components/question-item/question-item.
     QuestionListComponent,
     QuestionItemComponent,
     SnackbarItemComponent,
+    PagenotfoundComponent,
 
   ],
   imports: [
@@ -52,6 +56,8 @@ import { QuestionItemComponent } from './components/question-item/question-item.
     MatExpansionModule,
     MatIconModule,
     MatSnackBarModule,
+    StudentModule,
+    MatProgressBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
 
   ],

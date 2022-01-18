@@ -2,7 +2,7 @@ export class Admin {
   public firstName?: string;
   public secondName?: string;
   public email: string;
-  public password: String;
+  public password: string;
   public isAdmin?: boolean;
 
 

@@ -18,11 +18,12 @@ export class HeaderComponent implements OnInit,OnChanges {
    }
 
    ngOnInit() {
+
     console.log('Header init fired')
    }
 
    ngOnChanges(){
-       console.log('header onchanges fired')
+       console.log('header onchanges fired');
    }
 
 checkIsLoggedIn () {
@@ -30,19 +31,21 @@ checkIsLoggedIn () {
   return this.authService.isLoggedIn;
 }
 
-  create(){
-    this.adminExists=this.authService.checkUser();
-    if(this.adminExists){
-      this.adminExists=false;
-      return
-    }
-      const admin = new Admin('ashleycolaco3@gmail.com','codemax','Ashley','Colaco',true);
-      localStorage.setItem('users',JSON.stringify(admin));
-      console.log('Admin Created')
-  }
+  // create(){
+  //   this.adminExists=this.authService.checkUser();
+  //   if(this.adminExists){
+  //     this.adminExists=false;
+  //     return
+  //   }
+  //     const admin = new Admin('ashleycolaco3@gmail.com','codemax','Ashley','Colaco',true);
+  //     localStorage.setItem('users',JSON.stringify(admin));
+  //     console.log('Admin Created')
+  // }
 
   logout(){
-    localStorage.setItem('isLoggedIn',JSON.stringify(false));
+    // localStorage.setItem('isLoggedIn',JSON.stringify(false));
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('currentUser');
     this.authService.isLoggedIn=false;
     this.router.navigate(['login']);
   }

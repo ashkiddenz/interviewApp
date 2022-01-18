@@ -31,12 +31,16 @@ export class LoginComponent {
 
 
     if(this.authService.authenticate(email,password)){
-      this.router.navigate(['questions']);
+      console.log("Auth guard is routing");
+      if(this.authService.user.isAdmin){
+        this.router.navigate(['questions'])
+      }else{
+        this.router.navigate(['students']);
+      }
     } else {
       console.log('Authentication Failed',this.authService.isLoggedIn);
       this.failedAuthentication = true;
     }
-
 
   }
 

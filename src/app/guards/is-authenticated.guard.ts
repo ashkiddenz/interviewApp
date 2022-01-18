@@ -13,22 +13,19 @@ export class IsAuthenticatedGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-  //   if (!this.authService.isAuthenticated()) {
-  //     console.log('User is not logged in !!!');
-  //     this.router.navigate(['login']);
-  //     return false;
-  //   }
-  //   console.log('Logged In')
-  //   return true;
-  // }
 
   if (this.authService.isAuthenticated()) {
-    console.log('Logged In')
+    console.log('User logged In');
+    if(this.authService.isAdmin()){
+      console.log("Yes its Admin passing the guard");
+    }else {
+      console.log("Its a student passing the guard");
+    }
     return true;
   }
   console.log('User is not logged in !!!');
   this.router.navigate(['login']);
-  return true;
+  return false;
 }
 
 }
