@@ -96,7 +96,7 @@ export class QuestionEditComponent implements OnInit {
   openSnackBar(message:string) {
     this.snackbar.openFromComponent(SnackbarItemComponent,{
       data:message,
-      duration:2000
+      duration:1000
     })
   }
 

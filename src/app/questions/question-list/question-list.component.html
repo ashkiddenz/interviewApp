@@ -3,7 +3,7 @@
     <button class="btn btn-success" (click)="addMcq()">Add MCQ</button>
   </div>
   <div class="col-md-12 mt-2  border">
-    <mat-accordion >
+    <mat-accordion>
       <app-question-item
       *ngFor="let questionEl of questions; let i = index"
       [question]="questionEl"

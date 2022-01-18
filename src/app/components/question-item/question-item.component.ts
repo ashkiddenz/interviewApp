@@ -1,3 +1,4 @@
+import { DialogService } from './../../services/dialog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarItemComponent } from './../snackbar-item/snackbar-item.component';
 import { QuestionService } from './../../services/question.service';
@@ -6,6 +7,7 @@ import { Component} from '@angular/core';
 import { Input } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-question-item',
@@ -24,22 +26,33 @@ export class QuestionItemComponent {
   @Input() index!: number;
   panelOpenState = false;
 
-  constructor(private questionService:QuestionService,private snackbar:MatSnackBar,private router:Router,private route:ActivatedRoute){
+  constructor(private questionService:QuestionService,private snackbar:MatSnackBar,private router:Router,private route:ActivatedRoute,private dialog:DialogService){
 
 }
 
-
   openSnackBar() {
+
     this.snackbar.openFromComponent(SnackbarItemComponent,{
       data:'Question '+(this.index+1)+' deleted successfully !!!',
-      duration:2000
+      duration:1000
     })
   }
 
   onDeleteQuestion(){
-    console.log(this.question.id);
-     this.questionService.deleteQuestion(this.question.id);
-     this.openSnackBar();
+    this.dialog.confirmDialog({
+      title: 'Are you sure?',
+      message: 'Are you sure you want to do this?',
+      confirmCaption: 'Yes',
+      cancelCaption: 'No',
+    })
+    .subscribe((yes) => {
+      if(yes){
+        console.log(this.question.id," => Just Got Deleted ");
+        this.questionService.deleteQuestion(this.question.id);
+        this.openSnackBar();
+      }
+    });
+
   }
 
   onEditQuestion(){

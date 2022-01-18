@@ -1,3 +1,4 @@
+import { ConfirmComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {MatExpansionModule } from '@angular/material/expansion'
+//
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SnackbarItemComponent } from './components/snackbar-item/snackbar-item.component';
@@ -30,6 +31,7 @@ import { QuestionItemComponent } from './components/question-item/question-item.
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,7 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     QuestionItemComponent,
     SnackbarItemComponent,
     PagenotfoundComponent,
+    ConfirmComponent
 
   ],
   imports: [
@@ -53,14 +56,13 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     AngularMaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatExpansionModule,
-    MatIconModule,
     MatSnackBarModule,
     StudentModule,
     MatProgressBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-
+    MatIconModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent,]
 

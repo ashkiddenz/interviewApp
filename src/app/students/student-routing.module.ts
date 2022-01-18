@@ -1,3 +1,4 @@
+import { AngularMaterialModule } from './../angular-material/angular-material.module';
 import { IsStudentGuard } from './../guards/is-student.guard';
 import { LoggedInGuard } from './../guards/logged-in.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -18,7 +19,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes),
+
+  ],
+
   exports: [RouterModule]
 })
 export class StudentRoutingModule { }
