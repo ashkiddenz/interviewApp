@@ -79,6 +79,7 @@ export class AuthService {
       this.isLoggedIn = true;
       localStorage.setItem('isLoggedIn',JSON.stringify(this.isLoggedIn));
       localStorage.setItem('currentUser',JSON.stringify(currentUser));
+      localStorage.setItem('username',JSON.stringify(this.user.firstName))
       return true;
     } else {
       console.log('Email or Password is Incorrect');

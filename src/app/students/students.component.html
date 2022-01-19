@@ -1,2 +1,5 @@
-<p>Student Router Outlet</p>
+<!-- <p>Student Router Outlet</p> -->
+<div class="mt-2 text-center mb-2" *ngIf="!quizStarted">
+  <button class="btn btn-primary text-center" (click)="startQuiz()">Start Quiz</button>
+</div>
 <router-outlet></router-outlet>

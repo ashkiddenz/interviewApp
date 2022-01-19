@@ -1,4 +1,6 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-students',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
 
-  constructor() { }
+  quizStarted:boolean = false;
+
+  constructor(private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+
+  startQuiz(){
+    this.quizStarted=true;
+    this.router.navigate(['quiz'],{relativeTo:this.route})
   }
 
 }

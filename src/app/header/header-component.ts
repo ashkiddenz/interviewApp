@@ -46,6 +46,7 @@ checkIsLoggedIn () {
     // localStorage.setItem('isLoggedIn',JSON.stringify(false));
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('username');
     this.authService.isLoggedIn=false;
     this.router.navigate(['login']);
   }

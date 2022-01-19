@@ -12,8 +12,8 @@ import { IsAuthenticatedGuard } from '../guards/is-authenticated.guard';
 const routes: Routes = [
   {path:'register',component:RegisterComponent , canActivate:[LoggedInGuard] },
   {path:'students',component:StudentsComponent ,canActivate:[IsAuthenticatedGuard,IsStudentGuard] ,children:[
-    {path:'',component:DashboardComponent},
-    {path:'**',component:PagenotfoundComponent}
+    {path:'',redirectTo:'/students',pathMatch:'full'},
+    {path:'quiz',component:DashboardComponent},
   ]},
   {path:'**',component:PagenotfoundComponent}
 ];
