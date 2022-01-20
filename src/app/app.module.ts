@@ -29,8 +29,6 @@ import { QuestionDetailComponent } from './questions/question-detail/question-de
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionItemComponent } from './components/question-item/question-item.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
-import { ChangeBgDirective } from './change-bg.directive';
-
 
 
 @NgModule({
@@ -48,8 +46,6 @@ import { ChangeBgDirective } from './change-bg.directive';
     SnackbarItemComponent,
     PagenotfoundComponent,
     ConfirmComponent,
-    ChangeBgDirective
-
   ],
   imports: [
     BrowserModule,
@@ -64,7 +60,6 @@ import { ChangeBgDirective } from './change-bg.directive';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     MatIconModule,
   ],
-
   providers: [],
   bootstrap: [AppComponent,]
 

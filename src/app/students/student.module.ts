@@ -7,12 +7,14 @@ import { RegisterComponent } from './register/register.component';
 import { StudentsComponent } from './students.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ChangeBgDirective } from '../change-bg.directive';
 
 @NgModule({
   declarations: [
     RegisterComponent,
     StudentsComponent,
-    DashboardComponent
+    DashboardComponent,
+    ChangeBgDirective
   ],
   imports: [
     CommonModule,

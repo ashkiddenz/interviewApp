@@ -1,3 +1,4 @@
+import { QuizService } from './../../services/quiz.service';
 import { QuestionService } from './../../services/question.service';
 import { Question } from 'src/app/models/question.model';
 import { Component, OnInit, OnChanges } from '@angular/core';
@@ -14,16 +15,17 @@ export class DashboardComponent implements OnInit, OnChanges {
   questions: Question[] = null;
   currentQuestionIndex: number = 0;
   points: number = 0
-  counter: any = 5;
+  counter: number = 30;
   quizQuestions: Question[] = null;
   correctAnswers: number = 0;
   wrongAnswers: number = 0;
   totalAnswered: number = 0;
   interval$: any;
   progress:string = "0" ;
+  isCorrect:boolean;
   quizOver:boolean = false;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService,private quizService:QuizService) { }
 
   ngOnInit() {
     this.username = JSON.parse(localStorage.getItem('username'));
@@ -31,7 +33,6 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.quizQuestions = this.getRandom(this.questions, 10);
     console.log('Quiz Questions', this.quizQuestions);
     this.startCounter();
-
   }
 
   ngOnChanges() {
@@ -39,32 +40,39 @@ export class DashboardComponent implements OnInit, OnChanges {
   }
 
   answer(index: number, selectedOption: string) {
-    if (this.currentQuestionIndex < this.quizQuestions.length) {
-      if (this.quizQuestions[index].answer === selectedOption) {
-        console.log('Matches')
-        this.points += 10;
-        this.correctAnswers++;
-      } else {
-        console.log('no match')
-        this.wrongAnswers++;
+      if (this.currentQuestionIndex < this.quizQuestions.length) {
+        if (this.quizQuestions[index].answer === selectedOption) {
+          this.quizService.notifyBgDirective(true);
+          this.isCorrect=true;
+          console.log('Matches')
+          this.points += 10;
+          this.correctAnswers++;
+        } else {
+          console.log('no match')
+          this.quizService.notifyBgDirective(false);
+          this.isCorrect=false;
+          this.wrongAnswers++;
+        }
+
+        console.log('In Component-isCorrect = ',this.isCorrect);
+
+        if(this.currentQuestionIndex<this.quizQuestions.length-1){
+            this.currentQuestionIndex++;
+            this.counter=30;
+        } else{
+          console.log('Quiz over') ;
+          this.quizOver = true;
+          this.stopCounter();
+        }
       }
 
-      if(this.currentQuestionIndex<this.quizQuestions.length-1){
-        this.currentQuestionIndex++;
-        this.counter=5;
-      } else{
-        console.log('Quiz over') ;
-        this.quizOver = true;
-        this.stopCounter();
-      }
-    }
+      this.totalAnswered++;
+      console.log('Current Question Index', this.currentQuestionIndex);
+      console.log('CorrectAnswers=', this.correctAnswers);
+      console.log('WrongAnswers=', this.wrongAnswers);
+      console.log('Total Answered = ', this.totalAnswered);
+      this.progress=((this.totalAnswered)*10).toString();
 
-    this.totalAnswered++;
-    console.log('Current Question Index', this.currentQuestionIndex);
-    console.log('CorrectAnswers=', this.correctAnswers);
-    console.log('WrongAnswers=', this.wrongAnswers);
-    console.log('Total Answered = ', this.totalAnswered);
-    this.progress=((this.totalAnswered)*10).toString();
   }
 
   getRandom = (arr: Question[], n: number) => {
@@ -86,20 +94,20 @@ export class DashboardComponent implements OnInit, OnChanges {
   }
 
   nextQuestion() {
-    this.totalAnswered++;
-    this.wrongAnswers++;
-    this.progress=((this.totalAnswered)*10).toString();
-    console.log('Current Question Index', this.currentQuestionIndex);
-    console.log('CorrectAnswers=', this.correctAnswers);
-    console.log('WrongAnswers=', this.wrongAnswers);
-    console.log('Total Answered = ', this.totalAnswered);
-    if (this.currentQuestionIndex < this.quizQuestions.length-1) {
-      this.currentQuestionIndex++;
-      this.counter=5;
-    } else {
-      this.quizOver = true;
-      this.stopCounter();
-    }
+      this.totalAnswered++;
+      this.wrongAnswers++;
+      this.progress=((this.totalAnswered)*10).toString();
+      console.log('Current Question Index', this.currentQuestionIndex);
+      console.log('CorrectAnswers=', this.correctAnswers);
+      console.log('WrongAnswers=', this.wrongAnswers);
+      console.log('Total Answered = ', this.totalAnswered);
+      if (this.currentQuestionIndex < this.quizQuestions.length-1) {
+          this.currentQuestionIndex++;
+          this.counter=30;
+      } else {
+        this.quizOver = true;
+        this.stopCounter();
+      }
   }
 
   startCounter() {
@@ -114,7 +122,7 @@ export class DashboardComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.interval$.unsubscribe();
       this.quizOver=true;
-    }, 50 * 1000)
+    }, 300* 1000);
   }
 
 
@@ -122,7 +130,6 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.interval$.unsubscribe();
     this.counter = 0;
   }
-
 
 
 }

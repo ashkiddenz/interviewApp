@@ -31,21 +31,21 @@
         <h4><span>{{currentQuestionIndex+1}}.</span> {{quizQuestions[currentQuestionIndex]?.question}} ?</h4>
       </div>
     </div>
-    <div class="options">
+    <div class="options" >
       <ol>
         <li (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option1):false">
-          <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option1}}</div>
+          <div class="card" [ngClass]="!quizOver?'magic':''" appChangeBg  [quizOver]="quizOver" >{{quizQuestions[currentQuestionIndex]?.option1}}</div>
         </li>
         <li
          (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option2):false">
-         <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option2}}</div>
+         <div class="card" [ngClass]="!quizOver?'magic':''" appChangeBg  [quizOver]="quizOver" >{{quizQuestions[currentQuestionIndex]?.option2}}</div>
         </li>
         <li
           (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option3):false">
-          <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option3}}</div>
+          <div class="card" [ngClass]="!quizOver?'magic':''" appChangeBg [quizOver]="quizOver" >{{quizQuestions[currentQuestionIndex]?.option3}}</div>
         </li>
         <li (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option4):false">
-          <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option4}}</div>
+          <div class="card" [ngClass]="!quizOver?'magic':''" appChangeBg [quizOver]="quizOver"  >{{quizQuestions[currentQuestionIndex]?.option4}}</div>
         </li>
       </ol>
     </div>
