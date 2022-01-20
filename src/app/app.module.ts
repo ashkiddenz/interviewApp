@@ -29,6 +29,7 @@ import { QuestionDetailComponent } from './questions/question-detail/question-de
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionItemComponent } from './components/question-item/question-item.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ChangeBgDirective } from './change-bg.directive';
 
 
 
@@ -46,7 +47,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     QuestionItemComponent,
     SnackbarItemComponent,
     PagenotfoundComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    ChangeBgDirective
 
   ],
   imports: [

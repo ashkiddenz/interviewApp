@@ -19,7 +19,7 @@ export class StudentsComponent implements OnInit {
 
   startQuiz(){
     this.quizStarted=true;
-    this.router.navigate(['quiz'],{relativeTo:this.route})
+    this.router.navigate(['quiz'],{relativeTo:this.route});
   }
 
 }

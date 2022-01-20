@@ -10,9 +10,15 @@ li{
   margin: 10px 0;
 }
 
-li .card:hover{
+/* li .card:hover{
   border:1px solid black;
   background-color: blue;
+  color: white;
+} */
+
+.magic:hover{
+  border:1px solid blue;
+background-color: black;
   color: white;
 }
 

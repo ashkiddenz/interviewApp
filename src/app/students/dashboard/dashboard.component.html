@@ -16,34 +16,47 @@
       <div class="question-remain">
         <span>Question {{currentQuestionIndex+1}} of {{quizQuestions.length}}</span>
       </div>
-      <div class="timer">
+      <div class="timer" *ngIf="!quizOver" >
         {{counter}} sec ⏰
+      </div>
+      <div class="alert alert-danger" *ngIf="quizOver">
+        Quiz Over !!!
       </div>
     </div>
     <div class="progress">
-      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar"  [ngStyle]="{'width':progress+'%'}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
     <div class="question">
       <div class="card mt-2">
         <h4><span>{{currentQuestionIndex+1}}.</span> {{quizQuestions[currentQuestionIndex]?.question}} ?</h4>
       </div>
     </div>
-    <div class="options ">
+    <div class="options">
       <ol>
-        <li (click)="!(totalAnswered >= quizQuestions.length) ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option1):false">
-          <div class="card">{{quizQuestions[currentQuestionIndex]?.option1}}</div>
+        <li (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option1):false">
+          <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option1}}</div>
         </li>
         <li
-        (click)="!(totalAnswered >= quizQuestions.length) ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option2):false"><div class="card">{{quizQuestions[currentQuestionIndex]?.option2}}</div></li>
-        <li (click)="!(totalAnswered >= quizQuestions.length) ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option3):false"><div class="card">{{quizQuestions[currentQuestionIndex]?.option3}}</div></li>
-        <li (click)="!(totalAnswered >= quizQuestions.length) ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option4):false"><div class="card">{{quizQuestions[currentQuestionIndex]?.option4}}</div></li>
+         (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option2):false">
+         <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option2}}</div>
+        </li>
+        <li
+          (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option3):false">
+          <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option3}}</div>
+        </li>
+        <li (click)="!quizOver ? answer(currentQuestionIndex,quizQuestions[currentQuestionIndex]?.option4):false">
+          <div class="card" [ngClass]="!quizOver?'magic':''">{{quizQuestions[currentQuestionIndex]?.option4}}</div>
+        </li>
       </ol>
     </div>
     <div class="d-flex justify-content-between">
-      <button disabled class="btn" (click)="previousQuestion()"><mat-icon>chevron_left</mat-icon></button>
-      <button [disabled]="!quizOver" class='btn btn-primary '>Submit</button>
-      <button [disabled]="quizOver" class="btn" (click)="nextQuestion()"><mat-icon>chevron_right</mat-icon></button>
+      <button disabled class="btn" (click)="previousQuestion()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button [disabled]="!quizOver" class='btn btn-primary'>Submit</button>
+      <button [disabled]="quizOver" class="btn" (click)="nextQuestion()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
     </div>
-
   </div>
 </div>

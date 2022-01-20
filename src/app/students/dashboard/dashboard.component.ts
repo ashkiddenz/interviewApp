@@ -14,12 +14,13 @@ export class DashboardComponent implements OnInit, OnChanges {
   questions: Question[] = null;
   currentQuestionIndex: number = 0;
   points: number = 0
-  counter: any = 3;
+  counter: any = 5;
   quizQuestions: Question[] = null;
   correctAnswers: number = 0;
   wrongAnswers: number = 0;
   totalAnswered: number = 0;
   interval$: any;
+  progress:string = "0" ;
   quizOver:boolean = false;
 
   constructor(private questionService: QuestionService) { }
@@ -29,7 +30,8 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.questions = JSON.parse(localStorage.getItem('questions'));
     this.quizQuestions = this.getRandom(this.questions, 10);
     console.log('Quiz Questions', this.quizQuestions);
-    //  this.startCounter();
+    this.startCounter();
+
   }
 
   ngOnChanges() {
@@ -49,9 +51,11 @@ export class DashboardComponent implements OnInit, OnChanges {
 
       if(this.currentQuestionIndex<this.quizQuestions.length-1){
         this.currentQuestionIndex++;
+        this.counter=5;
       } else{
         console.log('Quiz over') ;
         this.quizOver = true;
+        this.stopCounter();
       }
     }
 
@@ -60,7 +64,7 @@ export class DashboardComponent implements OnInit, OnChanges {
     console.log('CorrectAnswers=', this.correctAnswers);
     console.log('WrongAnswers=', this.wrongAnswers);
     console.log('Total Answered = ', this.totalAnswered);
-
+    this.progress=((this.totalAnswered)*10).toString();
   }
 
   getRandom = (arr: Question[], n: number) => {
@@ -84,14 +88,17 @@ export class DashboardComponent implements OnInit, OnChanges {
   nextQuestion() {
     this.totalAnswered++;
     this.wrongAnswers++;
+    this.progress=((this.totalAnswered)*10).toString();
     console.log('Current Question Index', this.currentQuestionIndex);
     console.log('CorrectAnswers=', this.correctAnswers);
     console.log('WrongAnswers=', this.wrongAnswers);
     console.log('Total Answered = ', this.totalAnswered);
     if (this.currentQuestionIndex < this.quizQuestions.length-1) {
       this.currentQuestionIndex++;
+      this.counter=5;
     } else {
       this.quizOver = true;
+      this.stopCounter();
     }
   }
 
@@ -99,15 +106,15 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.interval$ = interval(1000).subscribe(
       value => {
         this.counter--;
-        if (this.counter === 0) {
+        if (this.counter === 0 ) {
           console.log("Times up");
-          // this.nextQuestion();
-          this.counter = 3;
+          this.nextQuestion();
         }
       });
     setTimeout(() => {
       this.interval$.unsubscribe();
-    }, 30 * 1000)
+      this.quizOver=true;
+    }, 50 * 1000)
   }
 
 
